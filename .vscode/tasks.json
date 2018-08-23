@@ -1,0 +1,43 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.2.0",
+    "tasks": [
+        {
+            "taskName": "gdb",
+            "command": "g++",
+            "args": ["-g", "${file}", "-o", "debug/${fileBasenameNoExtension}.exe"],
+            "showOutput": "always",
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": ["relative", "/"],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        },
+        {
+            "taskName": "build",
+            "command": "g++",
+            "args": ["-g","-Wall","${file}","-o", "debug/${fileBasenameNoExtension}.exe"],
+            "showOutput": "always",
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": ["relative", "/"],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        }
+    ]
+}
