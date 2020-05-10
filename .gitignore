@@ -1,1 +1,4 @@
 *.exe
+Java/.metadata
+.vscode
+.vscode/settings.json
