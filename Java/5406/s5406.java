@@ -19,46 +19,22 @@ public class s5406 {
         if(hasApple.get(node)){
             has = 0;
         } 
+        int timeAll = 0;
         for(int i = 0;i < num;i++){
             if(edgeMtx[node][i] == 1){
-                if(leftNode == -1){
-                    leftNode = i;
-                    continue;
-                }
-                if(rightNode == -1){
-                    rightNode = i;
-                    continue;
+                int time = nodetime(i,edgeMtx,hasApple);
+                if(time == -1) continue;
+                else{
+                    timeAll += (time+2);
                 }
             }
         }
-        if(leftNode == -1 && rightNode == -1){
+        if(timeAll == 0){
             return has;
         }
-        if(leftNode == -1 || rightNode == -1){
-            int tmpNode = leftNode + rightNode + 1;
-            int nextTime = nodetime(tmpNode,edgeMtx,hasApple);
-            if(nextTime == -1)
-                return has;
-            else
-                return nextTime+2;
+        else{
+            return timeAll;
         }
-        if(leftNode != -1 && rightNode != -1){
-            int leftTime = nodetime(leftNode,edgeMtx,hasApple);
-            int rightTime = nodetime(rightNode,edgeMtx,hasApple);
-            if(leftTime == -1 && rightTime == -1){
-                return has;
-            }
-            if(leftTime != -1 && rightTime == -1){
-                return leftTime + 2;
-            }
-            if(leftTime == -1 && rightTime != -1){
-                return rightTime + 2;
-            }
-            if(leftTime != -1 && rightTime != -1){
-                return rightTime + leftTime+4;
-            }
-        }
-        return 0;
     }
 
 
