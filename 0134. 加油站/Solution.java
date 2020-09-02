@@ -46,31 +46,32 @@ cost = [3,4,3]
 
 class Solution {
     public int canCompleteCircuit(int[] gas, int[] cost) {
-
-    }
-
-    private void helper(int[] gas, int[] cost, int start, boolean[] isVisit, int total) {
-    	if (isFin(isVisit)) {
-    		//是否可以到终点 todo
-    		return;
-    	}
     	for (int i = 0; i < gas.length; ++i) {
-    		if (!isVisit[i]) {
-    			 if (total + gas[i] - cost[i] > 0) {
-    			 	
-    			 }
+    		if (helper(gas, cost, i)) {
+    			return i;
     		}
     	}
+    	return -1;
 
-    	return false;
     }
 
-    boolean isFin(boolean[] isVisit) {
-    	for (boolean is : isVisit) {
-    		if (!is) {
+    private boolean helper(int[] gas, int[] cost, int start) {
+    	// boolean[] isVisit = new boolean[gas.length];
+    	int len = gas.length;
+    	int total = gas[start];
+    	for (int i = 0; i < len; ++i) {
+    		if (total >= cost[start]) {
+    			total -= cost[start];
+    			start++;
+    			if (start >= len) {
+    				start %= len;
+    			}
+    			total += gas[start];
+    		} else {
     			return false;
     		}
     	}
+
     	return true;
     }
 }
